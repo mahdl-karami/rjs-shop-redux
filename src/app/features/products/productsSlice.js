@@ -12,5 +12,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { sendig } = productsSlice;
+export const { sendig } = productsSlice.actions;
 export default productsSlice.reducer;
