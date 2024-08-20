@@ -3,7 +3,6 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 import { BiCartAdd } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 //? import helpers
-import countHandler from "../helpers/countHandler";
 import findIndex from "../helpers/findIndex";
 
 function CountPanel({ allProducts, dispatch, product }) {
