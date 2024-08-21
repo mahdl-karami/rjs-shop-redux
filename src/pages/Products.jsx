@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import products from "../services/products";
 //? import components
 import ProductCard from "../components/ProductCard";
+//? import app actions
 import { sending, success, failed } from "../app/features/products/productsSlice";
 
 function Products() {
+  //! redux
   const { loading, visibleProducts, error } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   //! fetch products

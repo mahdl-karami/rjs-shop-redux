@@ -1,14 +1,18 @@
+//? import hooks
 import { useEffect } from "react";
-import config from "../services/config";
 import { useDispatch, useSelector } from "react-redux";
+//? import services
+import config from "../services/config";
+//? import app actions
 import { sending, success } from "../app/features/categories/categoriesSlice";
-import { filterHandler } from "../helpers/filterHandler";
 import { filtering } from "../app/features/products/productsSlice";
 
 function HeaderForm() {
+  //! redux
   const { categories, loading, error } = useSelector((state) => state.categories);
   const { filter } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  //! fetch category list from api
   useEffect(() => {
     if (!categories) {
       dispatch(sending());

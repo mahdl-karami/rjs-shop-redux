@@ -1,6 +1,7 @@
 //? import hooks
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 //? import services
 import config from "../services/config";
 //? import components
@@ -8,11 +9,11 @@ import DetailsImages from "../components/DetailsImages";
 import CountPanel from "../components/CountPanel";
 //? react router dom
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 function Details() {
-  //! states
+  //! redux
   const { allProducts } = useSelector((state) => state.products);
+  //! states
   const [product, setProduct] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

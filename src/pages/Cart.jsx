@@ -1,14 +1,15 @@
+//? import hooks
+import { useSelector } from "react-redux";
 //? import components
 import ProductCard from "../components/ProductCard";
 import CartStatus from "../components/CartStatus";
-//? import helpers
-import findIndex from "../helpers/findIndex";
 //? import icons
 import CartEmptyAlert from "../components/CartEmptyAlert";
-import { useSelector } from "react-redux";
 
 function Cart() {
+  //! redux
   const { cartProducts } = useSelector((state) => state.products);
+  //! jsx
   return (
     <>
       <CartStatus cartProducts={cartProducts} />

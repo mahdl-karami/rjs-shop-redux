@@ -1,20 +1,26 @@
+//? import hooks
+import { useDispatch, useSelector } from "react-redux";
 //? import icons
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { BiCartAdd } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 //? import helpers
 import findIndex from "../helpers/findIndex";
-import { useDispatch, useSelector } from "react-redux";
+//? import app actions
 import { editCount } from "../app/features/products/productsSlice";
 
 function CountPanel({ product }) {
+  //! redux
   const { allProducts } = useSelector((state) => state.products);
-  const index = findIndex(allProducts, product);
   const dispatch = useDispatch();
+  //! states
+  const index = findIndex(allProducts, product);
   const { count } = product;
+  //! functions
   function clickHandler(value) {
     dispatch(editCount({ index, value }));
   }
+  //! jsx
   return (
     <div className="count-panel">
       {count == 0 && (

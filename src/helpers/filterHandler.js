@@ -3,6 +3,7 @@ export const filterHandler = (state) => {
     allProducts,
     filter: { search, category },
   } = state;
+  //! filter by category
   let newVisibleProducts = allProducts.filter((p) => {
     if (category == "all") {
       return p;
@@ -10,6 +11,7 @@ export const filterHandler = (state) => {
       return p.category.name == category;
     }
   });
+  //! filter by search
   newVisibleProducts = newVisibleProducts.filter((p) => {
     if (!search) {
       return p;
