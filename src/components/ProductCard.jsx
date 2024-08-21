@@ -7,7 +7,7 @@ import { TbListDetails } from "react-icons/tb";
 //? react router dom
 import { Link } from "react-router-dom";
 
-function ProductCard({ product, allProducts, dispatch }) {
+function ProductCard({ product, allProducts }) {
   const { title, images, price, id } = product;
   return (
     //! parent div lifted up to products div (render with key)
@@ -23,7 +23,7 @@ function ProductCard({ product, allProducts, dispatch }) {
             <TbListDetails />
           </button>
         </Link>
-        <CountPanel allProducts={allProducts} product={product} dispatch={dispatch} />
+        {/* <CountPanel allProducts={allProducts} product={product} dispatch={dispatch} /> */}
       </div>
     </>
   );
