@@ -5,6 +5,10 @@ const initialState = {
   loading: false,
   error: false,
   cartProducts: undefined,
+  filter: {
+    search: "",
+    category: "all",
+  },
 };
 
 export const productsSlice = createSlice({
@@ -29,8 +33,12 @@ export const productsSlice = createSlice({
       //! update cartProducts
       state.cartProducts = state.allProducts.filter((product) => product.count);
     },
+    filtering: (state, { payload: { name, value } }) => {
+      state.filter = { ...state.filter, [name]: value };
+
+    },
   },
 });
 
-export const { sending, success, failed, editCount } = productsSlice.actions;
+export const { sending, success, failed, editCount, filtering } = productsSlice.actions;
 export default productsSlice.reducer;

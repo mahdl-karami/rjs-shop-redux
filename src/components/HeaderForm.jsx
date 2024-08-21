@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import config from "../services/config";
 import { useDispatch, useSelector } from "react-redux";
-import { failed, sending, success } from "../app/features/categories/categoriesSlice";
+import { sending, success } from "../app/features/categories/categoriesSlice";
+import { filterHandler } from "../helpers/filterHandler";
+import { filtering } from "../app/features/products/productsSlice";
 
 function HeaderForm() {
   const { categories, loading, error } = useSelector((state) => state.categories);
+  const { filter } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!categories) {
@@ -15,16 +18,12 @@ function HeaderForm() {
         .catch((err) => dispatch(failed(err.message)));
     }
   }, []);
-  // function filterHandle(ev) {
-  //   const { name, value } = ev.target;
-  //   dispatch({ type: "filter_states", payload: { name, value } });
-  //   dispatch({ type: "filter", payload: name });
   return (
-    <form>
-      <input type="text" name="search" placeholder="Search" />
+    <form onChange={({ target: { name, value } }) => dispatch(filtering({ name, value }))}>
+      <input type="text" name="search" placeholder="Search" value={filter.search} />
       {loading && <>loading</>}
       {categories && (
-        <select name="category">
+        <select name="category" value={filter.category}>
           <option value={"all"}>all</option>
           {categories?.map(({ name, id }) => (
             <option key={id} value={name}>
