@@ -35,6 +35,9 @@ export const productsSlice = createSlice({
       state.allProducts[index].count += value;
       //! update cartProducts
       state.cartProducts = state.allProducts.filter((product) => product.count);
+      //! update visible products
+      const newVisibleProducts = filterHandler(JSON.parse(JSON.stringify(state)));
+      state.visibleProducts = newVisibleProducts;
     },
     filtering: (state, { payload: { name, value } }) => {
       state.filter = { ...state.filter, [name]: value };
