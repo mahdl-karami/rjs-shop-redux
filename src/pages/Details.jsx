@@ -8,51 +8,52 @@ import DetailsImages from "../components/DetailsImages";
 import CountPanel from "../components/CountPanel";
 //? react router dom
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Details() {
   //! states
+  const { allProducts } = useSelector((state) => state.products);
   const [product, setProduct] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const id = useParams().productId;
-  // const countedProduct = allProducts?.filter((p) => p.id == id)[0];
+  const countedProduct = allProducts?.filter((p) => p.id == id)[0];
   //! fetch product details
-  // useEffect(() => {
-  //   setLoading(true);
-  //   config
-  //     .get(`/products/${id}`)
-  //     .then((res) => {
-  //       setProduct(res);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => setError(err?.message));
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    config
+      .get(`/products/${id}`)
+      .then((res) => {
+        setProduct(res);
+        setLoading(false);
+      })
+      .catch((err) => setError(err?.message));
+  }, []);
   //! jsx
-  // if (loading) return <h1>loading</h1>;
-  // if (error) return <h1>{error}</h1>;
-  // if (!allProducts)
-  //   return (
-  //     <p>
-  //       - First go to <Link to="/products">Products</Link> for fetching data.
-  //     </p>
-  //   );
-  // if (product) {
-  //   const { title, images, description, price } = product;
-  return (
-    <div className="product-details">
-      details
-      {/* <DetailsImages images={images} />
+  if (loading) return <h1>loading</h1>;
+  if (error) return <h1>{error}</h1>;
+  if (!allProducts)
+    return (
+      <p>
+        - First go to <Link to="/products">Products</Link> for fetching data.
+      </p>
+    );
+  if (product) {
+    const { title, images, description, price } = product;
+    return (
+      <div className="product-details">
+        <DetailsImages images={images} />
         <span>
           <h1>{title}</h1>
           <p>{description}</p>
           <br />
           <p>{price} $</p>
           <br />
-          <CountPanel allProducts={allProducts} product={countedProduct} dispatch={dispatch} />
-        </span> */}
-    </div>
-  );
-  //   }
+          <CountPanel product={countedProduct} />
+        </span>
+      </div>
+    );
+  }
 }
 
 export default Details;
