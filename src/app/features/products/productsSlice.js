@@ -14,7 +14,9 @@ export const productsSlice = createSlice({
       state.loading = true;
     },
     success: (state, { payload }) => {
-      state.allProducts = payload;
+      //! add count to products
+      const newPayload = payload.map((product) => ({ ...product, ["count"]: 0 }));
+      state.allProducts = newPayload;
       state.loading = false;
     },
     failed: (state, { payload }) => {
