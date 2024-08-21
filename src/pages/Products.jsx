@@ -8,11 +8,11 @@ import ProductCard from "../components/ProductCard";
 import { sending, success, failed } from "../app/features/products/productsSlice";
 
 function Products() {
-  const { loading, allProducts, error } = useSelector((state) => state.products);
+  const { loading, visibleProducts, error } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   //! fetch products
   useEffect(() => {
-    if (!allProducts) {
+    if (!visibleProducts) {
       dispatch(sending());
       products()
         .get()
@@ -25,10 +25,10 @@ function Products() {
   //! jsx
   if (loading) return <h1>loading</h1>;
   if (error) return <h1>{error}</h1>;
-  if (allProducts) {
+  if (visibleProducts) {
     return (
       <div className="products">
-        {allProducts.map((product, index) => (
+        {visibleProducts.map((product, index) => (
           <div key={index} className="product">
             <ProductCard product={product} />
           </div>

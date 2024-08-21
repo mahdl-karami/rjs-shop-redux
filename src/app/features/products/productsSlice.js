@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { filterHandler } from "../../../helpers/filterHandler";
 
 const initialState = {
   allProducts: undefined,
+  visibleProducts: undefined,
   loading: false,
   error: false,
   cartProducts: undefined,
@@ -22,6 +24,7 @@ export const productsSlice = createSlice({
       //! add count to products
       const newPayload = payload.map((product) => ({ ...product, ["count"]: 0 }));
       state.allProducts = newPayload;
+      state.visibleProducts = newPayload;
       state.loading = false;
     },
     failed: (state, { payload }) => {
@@ -35,7 +38,8 @@ export const productsSlice = createSlice({
     },
     filtering: (state, { payload: { name, value } }) => {
       state.filter = { ...state.filter, [name]: value };
-
+      const newVisibleProducts = filterHandler(JSON.parse(JSON.stringify(state)));
+      state.visibleProducts = newVisibleProducts;
     },
   },
 });

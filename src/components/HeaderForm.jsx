@@ -20,10 +20,10 @@ function HeaderForm() {
   }, []);
   return (
     <form onChange={({ target: { name, value } }) => dispatch(filtering({ name, value }))}>
-      <input type="text" name="search" placeholder="Search" value={filter.search} />
+      <input type="text" name="search" placeholder="Search" value={filter.search} onChange={() => null} />
       {loading && <>loading</>}
       {categories && (
-        <select name="category" value={filter.category}>
+        <select name="category" value={filter.category} onChange={() => null}>
           <option value={"all"}>all</option>
           {categories?.map(({ name, id }) => (
             <option key={id} value={name}>
