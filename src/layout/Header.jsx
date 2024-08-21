@@ -6,10 +6,12 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 //? import helpers
 import cartTotal from "../helpers/cartTotal";
 import HeaderForm from "../components/HeaderForm";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const { cartProducts } = useSelector((state) => state.products);
   const pathName = useLocation().pathname;
-  // const { totalCount } = cartTotal(cartProducts);
+  const { totalCount } = cartTotal(cartProducts);
   return (
     <header>
       {pathName != "/products" ? (
@@ -26,7 +28,7 @@ function Header() {
         <Link to="/cart" className="link">
           <BsCart2 />
         </Link>
-        {/* {totalCount ? <span>{totalCount}</span> : null} */}
+        {totalCount ? <span>{totalCount}</span> : null}
       </button>
     </header>
   );

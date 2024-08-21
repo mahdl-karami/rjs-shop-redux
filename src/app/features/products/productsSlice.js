@@ -4,6 +4,7 @@ const initialState = {
   allProducts: undefined,
   loading: false,
   error: false,
+  cartProducts: undefined,
 };
 
 export const productsSlice = createSlice({
@@ -25,6 +26,8 @@ export const productsSlice = createSlice({
     },
     editCount: (state, { payload: { index, value } }) => {
       state.allProducts[index].count += value;
+      //! update cartProducts
+      state.cartProducts = state.allProducts.filter((product) => product.count);
     },
   },
 });

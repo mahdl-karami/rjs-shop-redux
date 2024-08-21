@@ -5,23 +5,24 @@ import CartStatus from "../components/CartStatus";
 import findIndex from "../helpers/findIndex";
 //? import icons
 import CartEmptyAlert from "../components/CartEmptyAlert";
+import { useSelector } from "react-redux";
 
 function Cart() {
+  const { cartProducts } = useSelector((state) => state.products);
   return (
     <>
-      {/* <CartStatus cartProducts={cartProducts} /> */}
-      {/* {cartProducts && cartProducts.length ? ( */}
-      <div className="products">
-        cart
-        {/* {cartProducts?.map((product, key) => (
-          <div key={key} className="product">
-            <ProductCard product={product} allProducts={allProducts} dispatch={dispatch} />
-          </div>
-        ))} */}
-      </div>
-      {/* ) : (
+      <CartStatus cartProducts={cartProducts} />
+      {cartProducts && cartProducts.length ? (
+        <div className="products">
+          {cartProducts?.map((product, key) => (
+            <div key={key} className="product">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      ) : (
         <CartEmptyAlert />
-      )} */}
+      )}
     </>
   );
 }
