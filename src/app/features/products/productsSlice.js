@@ -23,8 +23,11 @@ export const productsSlice = createSlice({
       state.error = payload;
       state.loading = false;
     },
+    editCount: (state, { payload: { index, value } }) => {
+      state.allProducts[index].count += value;
+    },
   },
 });
 
-export const { sending, success, failed } = productsSlice.actions;
+export const { sending, success, failed, editCount } = productsSlice.actions;
 export default productsSlice.reducer;

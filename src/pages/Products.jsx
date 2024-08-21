@@ -30,7 +30,7 @@ function Products() {
       <div className="products">
         {allProducts.map((product, index) => (
           <div key={index} className="product">
-            <ProductCard product={product} allProducts={allProducts} />
+            <ProductCard product={product} />
           </div>
         ))}
       </div>
