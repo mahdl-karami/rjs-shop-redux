@@ -21,14 +21,14 @@ function App() {
           path: "products",
           element: <Products />,
         },
-        // {
-        //   path: "products/:productId",
-        //   element: <Details state={state} dispatch={dispatch} />,
-        // },
-        // {
-        //   path: "cart",
-        //   element: <Cart state={state} dispatch={dispatch} />,
-        // },
+        {
+          path: "products/:productId",
+          element: <Details />,
+        },
+        {
+          path: "cart",
+          element: <Cart />,
+        },
       ],
     },
   ]);

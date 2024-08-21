@@ -6,21 +6,22 @@ import findIndex from "../helpers/findIndex";
 //? import icons
 import CartEmptyAlert from "../components/CartEmptyAlert";
 
-function Cart({ state: { allProducts, cartProducts }, dispatch }) {
+function Cart() {
   return (
     <>
-      <CartStatus cartProducts={cartProducts} />
-      {cartProducts && cartProducts.length ? (
-        <div className="products">
-          {cartProducts?.map((product, key) => (
-            <div key={key} className="product">
-              <ProductCard product={product} allProducts={allProducts} dispatch={dispatch} />
-            </div>
-          ))}
-        </div>
-      ) : (
+      {/* <CartStatus cartProducts={cartProducts} /> */}
+      {/* {cartProducts && cartProducts.length ? ( */}
+      <div className="products">
+        cart
+        {/* {cartProducts?.map((product, key) => (
+          <div key={key} className="product">
+            <ProductCard product={product} allProducts={allProducts} dispatch={dispatch} />
+          </div>
+        ))} */}
+      </div>
+      {/* ) : (
         <CartEmptyAlert />
-      )}
+      )} */}
     </>
   );
 }

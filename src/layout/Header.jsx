@@ -7,9 +7,9 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import cartTotal from "../helpers/cartTotal";
 import HeaderForm from "../components/HeaderForm";
 
-function Header({ state: { cartProducts, categories, filter }, dispatch }) {
+function Header() {
   const pathName = useLocation().pathname;
-  const { totalCount } = cartTotal(cartProducts);
+  // const { totalCount } = cartTotal(cartProducts);
   return (
     <header>
       {pathName != "/products" ? (
@@ -20,13 +20,13 @@ function Header({ state: { cartProducts, categories, filter }, dispatch }) {
           </Link>
         </h2>
       ) : (
-        <HeaderForm categories={categories} filter={filter} dispatch={dispatch} />
+        <HeaderForm />
       )}
       <button className="cart-btn">
         <Link to="/cart" className="link">
           <BsCart2 />
         </Link>
-        {totalCount ? <span>{totalCount}</span> : null}
+        {/* {totalCount ? <span>{totalCount}</span> : null} */}
       </button>
     </header>
   );
